@@ -1,0 +1,31 @@
+<h2><i class='fa fa-cog fa-fw'></i>&nbsp;修改用戶設定</h2>
+
+  <div class="row">
+
+    <div class="col-lg-12">
+    <%# devise_error_messages! %>
+    </div>
+
+    <div class="col-lg-4 col-lg-offset-4">
+
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+    <%= f.email_field :email, label: 'Email信箱', autofocus: true %>
+    <%= f.text_field :name, label: '用戶姓名' %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+    <%= f.password_field :password, label: '新密碼', autocomplete: "off", placeholder: '最少8位數,如果不修改請留空' %>
+    <%= f.password_field :password_confirmation, label: '確認新密碼', autocomplete: "off", placeholder: '兩次密碼要相同' %>
+    <%= f.password_field :current_password, label: '目前密碼', autocomplete: "off", placeholder: '請輸入才能修改' %>
+
+  <br>
+    <%= f.submit "送出", class: 'btn btn-lg btn-primary' %>
+    <%= link_to '回上頁', items_path, class: 'btn btn-lg btn-default' %>
+<% end %>
+
+  </div>
+  </div>
+

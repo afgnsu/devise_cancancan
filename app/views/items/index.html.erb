@@ -1,0 +1,38 @@
+<h1>商品列表</h1>
+
+<table class='table table-hover'>
+  <thead>
+    <tr>
+      <th>商品名稱</th>
+      <th>商品介紹</th>
+      <th>商品價格</th>
+      <th>業務</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <td><%= item.user.name %></td>
+        <td><%= link_to '詳細', item, class: 'btn btn-xs btn-info' %>
+          <% if can? :update, item %>
+            <%= link_to '編輯', edit_item_path(item), class: 'btn btn-xs btn-warning' %>
+          <% end %>
+          <% if can? :destroy, item %>
+            <%= link_to '刪除', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if can? :create, Item %>
+  <%= link_to '新增商品', new_item_path, class: 'btn btn-lg btn-primary' %>
+<% end %>

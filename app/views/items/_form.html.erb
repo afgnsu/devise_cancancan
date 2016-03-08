@@ -1,0 +1,30 @@
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, '商品名稱' %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, '商品說明' %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :price, '商品價格' %><br>
+    <%= f.text_field :price %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit '送出', class:  'btn btn-lg btn-primary' %>
+  </div>
+<% end %>

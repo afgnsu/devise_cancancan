@@ -1,0 +1,23 @@
+<h2><i class='fa fa-user'></i>&nbsp;用戶登入</h2>
+
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+
+<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.email_field :email, label: '請輸入Email信箱', autofocus: true %>
+
+    <%= f.password_field :password, label: '請輸入密碼', autocomplete: "off" %>
+
+  <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me, label: '記住我' %>
+  <% end -%>
+
+    <%= f.submit "送出", class: 'btn btn-lg btn-primary' %>
+
+<% end %>
+
+<br>
+<%= render "devise/shared/links" %>
+
+</div>
+</div>
